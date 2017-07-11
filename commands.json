@@ -6,5 +6,5 @@
       "arguments": "/c debughost.cmd"
     }
   },
-  "-vs-binding":{"AfterBuild":["debughost"],"ProjectOpened":["debughost"]}
+  "-vs-binding": { "ProjectOpened": [ "debughost" ] }
 }
