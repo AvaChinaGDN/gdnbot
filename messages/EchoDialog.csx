@@ -54,7 +54,7 @@ public class EchoDialog : IDialog<object>
             using (var content = new ByteArrayContent(byteData))
             {
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                response = await client.PostAsync(uri, message.Text);
+                response = await client.PostAsync(uri, content);
 
                 await context.PostAsync($"{this.count++}: You said {response}");
                 context.Wait(MessageReceivedAsync);
