@@ -50,7 +50,7 @@ public class EchoDialog : IDialog<object>
             var uri = "https://gdnml.azure-api.net/sentiment/score";
             HttpResponseMessage response;
             // Request body
-            byte[] byteData = Encoding.UTF8.GetBytes("{\"Inputs\":{\"input1\":{\"ColumnNames\":[\"text_column\"],\"Values\":[[\"fuck\"]]}},\"GlobalParameters\": { }}");
+            byte[] byteData = Encoding.UTF8.GetBytes("{\"Inputs\":{\"input1\":{\"ColumnNames\":[\"text_column\"],\"Values\":[[\""+ message.Text+"\"]]}},\"GlobalParameters\": { }}");
             using (var content = new ByteArrayContent(byteData))
             {
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
