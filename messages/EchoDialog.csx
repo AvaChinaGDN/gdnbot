@@ -50,15 +50,15 @@ public class EchoDialog : IDialog<object>
             var uri = "https://gdnml.azure-api.net/sentiment/score";
             HttpResponseMessage response;
             // Request body
-            //byte[] byteData = Encoding.UTF8.GetBytes(message.Text);
-            //using (var content = new ByteArrayContent(byteData))
-            //{
-            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            response = await client.PostAsync(uri, message.Text);
+            byte[] byteData = Encoding.UTF8.GetBytes(message.Text);
+            using (var content = new ByteArrayContent(byteData))
+            {
+                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                response = await client.PostAsync(uri, message.Text);
 
-            await context.PostAsync($"{this.count++}: You said {response}");
-            context.Wait(MessageReceivedAsync);
-            //}
+                await context.PostAsync($"{this.count++}: You said {response}");
+                context.Wait(MessageReceivedAsync);
+            }
         }
     }
 
