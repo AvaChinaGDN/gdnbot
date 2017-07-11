@@ -56,7 +56,8 @@ public class EchoDialog : IDialog<object>
                 response = await client.PostAsync(uri, content);
 
                 await context.PostAsync($"{this.count++}: You said {response}");
-            context.Wait(MessageReceivedAsync);
+                context.Wait(MessageReceivedAsync);
+            }
         }
     }
 
