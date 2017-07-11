@@ -46,6 +46,7 @@ public class EchoDialog : IDialog<object>
         else
         {
             var client = new HttpClient();
+            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "15f8be8952b748acad99bc3a09c96eca");
             var uri = "https://gdnml.azure-api.net/sentiment/score";
             HttpResponseMessage response;
             // Request body
