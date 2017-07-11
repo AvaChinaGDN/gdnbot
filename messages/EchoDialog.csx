@@ -1,4 +1,8 @@
 using System;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Net.Http;
+using System.Web;
 using System.Threading.Tasks;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
@@ -41,7 +45,17 @@ public class EchoDialog : IDialog<object>
         }
         else
         {
-            await context.PostAsync($"{this.count++}: You said {message.Text}");
+            var client = new HttpClient();
+            var uri = "https://gdnml.azure-api.net/sentiment/score";
+            HttpResponseMessage response;
+            // Request body
+            byte[] byteData = Encoding.UTF8.GetBytes(message.Text);
+            using (var content = new ByteArrayContent(byteData))
+            {
+                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                response = await client.PostAsync(uri, content);
+
+                await context.PostAsync($"{this.count++}: You said {response}");
             context.Wait(MessageReceivedAsync);
         }
     }
