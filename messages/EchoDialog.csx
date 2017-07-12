@@ -57,7 +57,7 @@ public class EchoDialog : IDialog<object>
                 response = await client.PostAsync(uri, content);
                 string result = await response.Content.ReadAsStringAsync();
                 string words;
-                if(int.int.Parse(result.Substring(result.IndexOf("Values\":[[\"")+11,1)) == 4)
+                if(int.Parse(result.Substring(result.IndexOf("Values\":[[\"")+11,1)) == 4)
                 {
                     words = "Your sentiment in the tallking is positive! :)";
                 }
